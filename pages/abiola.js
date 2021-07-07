@@ -1,66 +1,35 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
-import Link from "next/link";
 import { sanityClient, urlFor } from "../lib/sanity";
 
-const projectsQuery = `*[_type == "project"]{
+const authorsQuery = `*[_type == "author"]{
   title,
   date,
   place,
   description,
-  projectType,
+  authorType,
   link,
   tags
 }`;
 
-const Design = ({ projects }) => {
+const About = ({ authors }) => {
   return (
     <Main>
       <Head>
-        <title>Abiola | Projects 🕐 </title>
+        <title>Abiola | about 🕐 </title>
         <meta name="keywords" content="portfolio" />
       </Head>
 
-      <h1>Projects</h1>
-      <Homes>
-        <div>
-          <h2>Frontend Projects</h2>
-          <p>I have worked on some web apps</p>
-          <button>
-            <Link href="/frontend">
-              <span>check them out</span>
-            </Link>
-          </button>
-        </div>
-        <div>
-          <h2>UX Design Projects</h2>
-          <p>
-            I have also used Figma and Adobe XD for some web and app designs
-          </p>
-          <button>
-            <Link href="/ux">
-              <span>check them out</span>
-            </Link>
-          </button>
-        </div>
-        <div>
-          <h2>Blog Posts</h2>
-          <p>I gather some random thoughts</p>
-
-          <button>
-            <Link href="/blogPost">
-              <span>check them out</span>
-            </Link>
-          </button>
-        </div>
-      </Homes>
+      <h1>authors</h1>
     </Main>
   );
 };
 
-export default Design;
+export default About;
 
 export async function getStaticProps() {
-  const projects = await sanityClient.fetch(projectsQuery);
-  return { props: { projects } };
+  const authors = await sanityClient.fetch(authorsQuery);
+  return { props: { authors } };
 }
+
+const Main = styled.div``;

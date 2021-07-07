@@ -1,10 +1,8 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
-
 import Link from "next/link";
 
 export default function Home({ posts }) {
-  console.log({ posts });
   return (
     <div>
       <Head>
@@ -61,33 +59,3 @@ const Buttons = styled.div`
     }
   }
 `;
-// const Homes = styled.div`
-//   min-height: 100vh;
-//   max-width: 100vw;
-//   padding: 0;
-//   margin: 3vw;
-//   font: 2.5vw sans-serif;
-//   justify-content: center;
-//   text-align: center;
-
-//   background-color: #fff;
-//   border: 1px solid #000;
-//   border-radius: 1rem;
-//   @media screen and (min-width: 800px) {
-//   }
-// `;
-
-// const Div1 = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   text-align: center;
-//   margin: 1rem;
-// `;
-// const Div2 = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   text-align: center;
-//   margin: 1rem;
-// `;
