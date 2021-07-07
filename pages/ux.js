@@ -7,6 +7,7 @@ const projectsQuery = `*[_type == "design"]{
   title,
   date,
   place,
+  _key, 
   description,
   projectType,
   link,
@@ -24,8 +25,8 @@ const Design = ({ projects }) => {
       <h1>Frontend Projects</h1>
       <Homes>
         {projects &&
-          projects.map((project, index) => (
-            <Article>
+          projects.map((project) => (
+            <Article key={project._key}>
               <h2>
                 <a
                   href={project.link}

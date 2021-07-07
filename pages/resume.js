@@ -120,7 +120,11 @@ const Resume = () => {
               </div>
               <ul>
                 <li>
-                  <a href="https://twitter.com/bornriches" target="_blank">
+                  <a
+                    href="https://twitter.com/bornriches"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <div>
                       <IoLogoTwitter />
                     </div>
@@ -131,7 +135,11 @@ const Resume = () => {
                 </li>
 
                 <li>
-                  <a href="https://github.com/princehaybee" target="_blank">
+                  <a
+                    href="https://github.com/princehaybee"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     <div>
                       <IoLogoGithub />
                     </div>

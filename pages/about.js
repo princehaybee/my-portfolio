@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import Image from "next/image";
+import Picture from "../public/haybee.jpeg";
 
 const About = () => {
   return (
@@ -6,9 +8,16 @@ const About = () => {
       <h1>More about me</h1>
       <Details>
         <div>
-          <img src="haybee.jpeg" alt="author picture" />
+          <Image
+            src={Picture}
+            alt="Picture of the author"
+            width={550}
+            height={950}
+            border-radius={8}
+            // layout="responsive"
+          />
         </div>
-        <div>
+        {/* <div>
           <p>
             Hey there, I’m Abiola Adewale!I recently graduated from Göethe
             Universität, Frankfurt with a master’s degree in Linguistics. I have
@@ -34,7 +43,7 @@ const About = () => {
             When I don't go for a walk in the evening, I ride my bike or spend
             time time chilling with friends.
           </p>
-        </div>
+        </div> */}
       </Details>
     </Homes>
   );
@@ -67,11 +76,7 @@ const Details = styled.div`
   div {
     margin: 10px;
   }
-  img {
-    width: 350px;
-    height: auto;
-    border-radius: 8px;
-  }
+
   @media screen and (min-width: 800px) {
     flex-direction: row;
     margin: 1.5rem;
