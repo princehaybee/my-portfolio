@@ -9,6 +9,7 @@ import styled from "@emotion/styled";
 import Head from "next/head";
 import BlockContent from "@sanity/block-content-to-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const postQuery = `*[_type == "post" && slug.current == $slug][0]{
   title,
@@ -25,7 +26,7 @@ const postQuery = `*[_type == "post" && slug.current == $slug][0]{
   "authorImage": author->image
 }`;
 
-export default function OnePost({ data, preview }) {
+export default function OnePost({ data }) {
   // const { data: post } = usePreviewSubscription(postQuery, {
   //   params: { slug: data.post?.slug.current },
   //   initialData: data,
@@ -53,7 +54,7 @@ export default function OnePost({ data, preview }) {
             <div>
               <h1>{post.title}</h1>
               <div>
-                <img
+                <Image
                   src={urlFor(post.authorImage).url()}
                   alt={post.name}
                   style={{
@@ -66,7 +67,8 @@ export default function OnePost({ data, preview }) {
               </div>
             </div>
           </Div>
-          <img
+
+          <Image
             src={post.mainImage.asset.url}
             alt={post.title}
             style={{
