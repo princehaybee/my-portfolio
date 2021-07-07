@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import Head from "next/head";
 import Link from "next/link";
 import { sanityClient, urlFor } from "../lib/sanity";
+import Image from "next/image";
 
 const postsQuery = `*[_type == "post"]{
   title,
@@ -16,7 +17,6 @@ const postsQuery = `*[_type == "post"]{
 }`;
 
 export default function Home({ posts }) {
-  console.log({ posts });
   return (
     <Main>
       <Head>
@@ -29,11 +29,14 @@ export default function Home({ posts }) {
         {posts &&
           posts.map((post) => (
             <div key={post._id}>
-              <Link href={`/blogs/${post.slug.current}`}>
+              <Link href={`/blogs/${post.slug.current}`} passHref>
                 <article>
                   <span>{post.title}</span>
                   <span>
-                    <img src={urlFor(post.mainImage).url()} alt={post.title} />
+                    <Image
+                      src={urlFor(post.mainImage).url()}
+                      alt={post.title}
+                    />
                   </span>
                 </article>
               </Link>
