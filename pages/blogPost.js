@@ -26,18 +26,19 @@ export default function Home({ posts }) {
       <h1> Blog Posts</h1>
       <h2> Welcome to my blog</h2>
       <Homes>
-        {posts.map((post) => (
-          <Article key={post._id}>
-            <Link href={`/blogs/${post.slug.current}`}>
-              <a>
-                <img src={urlFor(post.mainImage).url()} alt={post.title} />
-                <span>
-                  <button>{post.title}</button>
-                </span>
-              </a>
-            </Link>
-          </Article>
-        ))}
+        {posts &&
+          posts.map((post) => (
+            <div key={post._id}>
+              <Link href={`/blogs/${post.slug.current}`}>
+                <article>
+                  <span>{post.title}</span>
+                  <span>
+                    <img src={urlFor(post.mainImage).url()} alt={post.title} />
+                  </span>
+                </article>
+              </Link>
+            </div>
+          ))}
       </Homes>
     </Main>
   );
@@ -49,57 +50,48 @@ export async function getStaticProps() {
 }
 
 const Main = styled.main`
+  min-height: 100vh;
+  max-width: 100vw;
+  font-size: 25px;
   h1,
   h2 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
+    margin: 0;
+  }
+  @media screen and (min-width: 800px) {
+    font-size: 40px;
   }
 `;
 
 const Homes = styled.div`
-  min-height: 100vh;
-  max-width: 100vw;
-  padding-top: 0px;
-  margin-top: 0px;
-  text-align: center;
-  font: 1.5rem sans-serif;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  a {
-    text-decoration: none;
-    span {
-      position: relative;
-    }
-    button {
-      background-color: #fff;
-      border: 1px solid black;
-      border-radius: 8px;
-      padding: 3px 4px;
-      width: auto;
-      background: red;
-    }
-    img {
-      height: 180px;
-    }
+  height: auto;
+  article {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    margin: 25px;
+
+    height: auto;
   }
+  img {
+    height: 50vh;
+    width: 90vw;
+    border-radius: 10px;
+  }
+
   @media screen and (min-width: 800px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    article {
+      width: 30vw;
+    }
+    img {
+      width: 30vw;
+    }
   }
-`;
-
-const Article = styled.article`
-  border: 1px solid #444;
-  box-sizing: border-box;
-  box-shadow: 5px 5px;
-  border-radius: 5px;
-  margin: 2.5rem;
-  display: block;
-  height: 300px;
-  object-fit: cover;
-  margin-bottom: 12px;
-  background-color: #e6e6e6;
 `;

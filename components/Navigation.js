@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { FaBars, FaHome, FaTimes } from "react-icons/fa";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 
 function Navbar() {
@@ -29,15 +28,7 @@ function Navbar() {
         <Link href="/projects">
           <a>Projects</a>
         </Link>
-        {/* <Link href="/frontend">
-          <a>Frontend</a>
-        </Link>
-        <Link href="/ux">
-          <a>UX Design</a>
-        </Link> */}
       </LeftNav>
-
-      {/* <ShopItems2 showmenu={showmenu}></ShopItems2> */}
     </Header>
   );
 }
@@ -112,6 +103,3 @@ const RightNav = styled.div`
     }
   }
 `;
-
-const Dropdown = styled.span``;
-const DropContent = styled.span``;

@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import Head from "next/head";
-import Image from "next/image";
+
 import Link from "next/link";
 
 export default function Home({ posts }) {
@@ -20,12 +20,12 @@ export default function Home({ posts }) {
         <Buttons>
           <button>
             <Link href="/projects">
-              <a>my projects</a>
+              <span>my projects</span>
             </Link>
           </button>
           <button>
             <Link href="/about">
-              <a>about me</a>
+              <span>about me</span>
             </Link>
           </button>
         </Buttons>
@@ -37,15 +37,9 @@ export default function Home({ posts }) {
 const Homes = styled.div`
   min-height: 100vh;
   max-width: 100vw;
-  font: 20px sans-serif;
-  padding: 20px 15px;
-  a {
-    text-decoration: none;
-    color: #000;
-  }
-  a:hover {
-    color: #fff;
-  }
+  font: 25px sans-serif;
+  padding: 20px 25px;
+
   @media screen and (min-width: 800px) {
     font: 2.5vw sans-serif;
     padding: 5rem 15rem;
@@ -53,11 +47,17 @@ const Homes = styled.div`
 `;
 const Buttons = styled.div`
   display: inline-block;
+  margin-left: 10px;
+  p {
+    padding: 0;
+  }
   button {
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 1px solid black;
     :hover {
       background-color: #000;
+      color: #fff;
     }
   }
 `;

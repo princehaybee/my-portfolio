@@ -26,7 +26,7 @@ const Design = ({ projects }) => {
         {projects &&
           projects.map((project, index) => (
             <Article>
-              <h3>
+              <h2>
                 <a
                   href={project.link}
                   alt={project.title}
@@ -35,8 +35,8 @@ const Design = ({ projects }) => {
                 >
                   {project.title}
                 </a>
-              </h3>
-              <span>
+              </h2>
+              {/* <span>
                 <strong>Finished on</strong>:{" "}
                 {new Date(project.date).toLocaleDateString()}
               </span>
@@ -45,15 +45,25 @@ const Design = ({ projects }) => {
               </span>
               <span>
                 <strong>Type</strong>: {project.projectType}
-              </span>
+              </span> */}
               <p>{project.description}</p>
-              <Link
-                href={project.link}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                <a>Go to project....</a>
-              </Link>
+
+              <Buttons>
+                <button>
+                  <Link href=" ">
+                    <span>Details ....</span>
+                  </Link>
+                </button>
+                <button>
+                  <Link
+                    href={project.link}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <span>Visit Page</span>
+                  </Link>
+                </button>
+              </Buttons>
             </Article>
           ))}
       </Homes>
@@ -75,6 +85,15 @@ const Main = styled.main`
     align-items: center;
     font-size: 3rem;
   }
+  p,
+  h1,
+  h3,
+  span,
+  a {
+    margin: 0;
+
+    padding: 5px;
+  }
 `;
 
 const Homes = styled.section`
@@ -86,14 +105,12 @@ const Homes = styled.section`
   font: 1.5rem sans-serif;
   list-style-type: none;
   display: flex;
+
   flex-direction: column;
 
-  a {
-    text-decoration: none;
-  }
   @media screen and (min-width: 800px) {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 `;
 
@@ -102,14 +119,32 @@ const Article = styled.article`
   box-sizing: border-box;
   box-shadow: 5px 5px;
   border-radius: 5px;
-  margin: 2.5rem;
-
-  height: 350px;
-
+  margin: 1rem;
+  height: auto;
   background-color: #e6e6e6;
-
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
+
   align-items: center;
+  @media screen and (min-width: 800px) {
+    height: 250px;
+  }
+`;
+
+const Buttons = styled.div`
+  display: inline-block;
+  margin-left: 10px;
+  p {
+    padding: 0;
+  }
+  button {
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    :hover {
+      background-color: #000;
+      color: #fff;
+    }
+  }
 `;

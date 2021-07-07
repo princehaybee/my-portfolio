@@ -24,32 +24,32 @@ const Design = ({ projects }) => {
       <h1>Projects</h1>
       <Homes>
         <div>
-          <h1>Frontend Projects</h1>
+          <h2>Frontend Projects</h2>
           <p>I have worked on some web apps</p>
           <button>
             <Link href="/frontend">
-              <a>check them out</a>
+              <span>check them out</span>
             </Link>
           </button>
         </div>
         <div>
-          <h1>UX Design Projects</h1>
+          <h2>UX Design Projects</h2>
           <p>
             I have also used Figma and Adobe XD for some web and app designs
           </p>
           <button>
             <Link href="/ux">
-              <a>check them out</a>
+              <span>check them out</span>
             </Link>
           </button>
         </div>
         <div>
-          <h1>Blog Posts</h1>
+          <h2>Blog Posts</h2>
           <p>I gather some random thoughts</p>
 
           <button>
             <Link href="/blogPost">
-              <a>check them out</a>
+              <span>check them out</span>
             </Link>
           </button>
         </div>
@@ -70,46 +70,50 @@ const Main = styled.main`
   max-width: 100vw;
   padding-top: 0px;
   margin-top: 0px;
+
+  font-size: 40px;
   h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2.5rem;
-  }
-  a {
-    text-decoration: none;
+
+    padding: 0;
     color: #000;
   }
-  a:hover {
-    color: #fff;
+  h2,
+  p {
+    margin: 0;
   }
+
   @media screen and (min-width: 800px) {
     h1 {
-      font-size: 3rem;
     }
   }
 `;
 
 const Homes = styled.section`
-  padding: 15px;
+  padding: 10px;
   text-align: center;
-  font: 20px sans-serif;
-  list-style-type: none;
   display: flex;
   flex-direction: column;
   div {
-    background-color: #0000cc;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: #808080;
     margin: 10px;
     border: 1px solid black;
     border-radius: 5px;
     color: #fff;
-    height: 50vh;
+    height: auto;
+    padding: 5px;
   }
   button {
     cursor: pointer;
     border-radius: 5px;
     background-color: #fff;
-    padding: 10px;
+    padding: 5px;
+    margin: 0;
     :hover {
       background-color: #000;
       color: #fff;
@@ -119,8 +123,15 @@ const Homes = styled.section`
   @media screen and (min-width: 800px) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    font: 2.5rem sans-serif;
-    button {       
-        padding: 5px;      
+    h2,
+    p {
+      margin: 10px;
+    }
+    button {
+      padding: 5px;
+    }
+    div {
+      padding: 40px;
+    }
   }
 `;

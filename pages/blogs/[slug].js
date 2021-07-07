@@ -7,17 +7,23 @@ import {
 } from "../../lib/sanity";
 import styled from "@emotion/styled";
 import Head from "next/head";
+import BlockContent from "@sanity/block-content-to-react";
 import Link from "next/link";
 
 const postQuery = `*[_type == "post" && slug.current == $slug][0]{
-      _id,
-      title,
+  title,
+  _id,
   slug,
-  mainImage,
-  categories, 
-  publishedAt,
-  likes     
-    }`;
+  mainImage{
+      asset->{
+          _id,
+          url
+      }
+  },
+  body,
+  "name": author->name,
+  "authorImage": author->image
+}`;
 
 export default function OnePost({ data, preview }) {
   // const { data: post } = usePreviewSubscription(postQuery, {
@@ -40,18 +46,44 @@ export default function OnePost({ data, preview }) {
 
   const { post } = data;
   return (
-    <div>
-      <Head>
-        <title>Portfolio | Blog 🕵️‍♂️ </title>
-        <meta name="keywords" content="portfolio" />
-      </Head>
-      <Homes>
-        <h1>{post.title}</h1>
-
-        <img src={urlFor(post?.mainImage).url()} />
-        <button onClick={addLike}>{likes}💙</button>
-      </Homes>
-    </div>
+    <Main>
+      <article>
+        <header>
+          <Div>
+            <div>
+              <h1>{post.title}</h1>
+              <div>
+                <img
+                  src={urlFor(post.authorImage).url()}
+                  alt={post.name}
+                  style={{
+                    height: "100px",
+                    width: "120px",
+                    borderRadius: "50%",
+                  }}
+                />
+                <p>{post.name}</p>
+              </div>
+            </div>
+          </Div>
+          <img
+            src={post.mainImage.asset.url}
+            alt={post.title}
+            style={{
+              height: "400px",
+              width: "100vw",
+            }}
+          />
+        </header>
+        <Block>
+          <BlockContent
+            blocks={post.body}
+            projectId="d5wzzav5"
+            dataset="production"
+          />
+        </Block>
+      </article>
+    </Main>
   );
 }
 
@@ -76,26 +108,45 @@ export async function getStaticProps({ params }) {
   return { props: { data: { post }, preview: true } };
 }
 
-const Homes = styled.div`
+const Main = styled.main`
   min-height: 100vh;
   max-width: 100vw;
-  padding-top: 0px;
-  margin-top: 0px;
-  text-align: center;
-  font: 3vw sans-serif;
+  font-size: 25px;
+  header {
+    position: relative;
+  }
+`;
+const Div = styled.div`
   display: flex;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
- 
-button {
-    cursor: pointer;
-}
-
-  a {
-    img{
-      height: 200px;
-      width: 120px:
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  padding: 20px;
+  div {
+    background-color: #fff;
+    opacity: 90%;
+    border-radius: 10px;
+    padding: 15px;
+    h1 {
+      font-style: italic;
+    }
+    div {
+      display: flex;
+      justify-content: center;
+      color: grey;
+      p {
+        display: flex;
+        align-items: center;
+        padding-left: 10px;
+        font-weight: bold;
+      }
     }
   }
+`;
+
+const Block = styled.div`
+  max-width: 100vw;
+  padding: 10px 30px;
 `;
